@@ -8,6 +8,11 @@ import random
 
 
 def yes_or_no(choice):
+    """
+
+    :param choice:
+    :return:
+    """
     if choice == "Y":
         return True
     else:
@@ -15,41 +20,47 @@ def yes_or_no(choice):
 
 
 def math_questions():
+    """
+
+    :return:
+    """
     operators = ["+", "-", "*", "/", "**", "//", "%"]
     operation = operators[random.randint(0, 6)]
     first_num = random.randint(1, 15)
     second_num = random.randint(1, 15)
     correct_answer = None
     user_answer = None
+    question = None
 
     if operation == "+":
         correct_answer = first_num + second_num
         question = str(first_num) + " + " + str(second_num) + " = "
-        user_answer = float(input(question))
     elif operation == "-":
         correct_answer = first_num - second_num
         question = str(first_num) + " - " + str(second_num) + " = "
-        user_answer = float(input(question))
     elif operation == "*":
         correct_answer = first_num * second_num
         question = str(first_num) + " * " + str(second_num) + " = "
-        user_answer = float(input(question))
     elif operation == "/":
         correct_answer = round(first_num / second_num, 2)
         question = str(first_num) + " / " + str(second_num) + " = "
-        user_answer = float(input(question))
     elif operation == "**":
         correct_answer = first_num ** 3
         question = str(first_num) + " ** 3 = "
-        user_answer = float(input(question))
     elif operation == "//":
         correct_answer = first_num // second_num
         question = str(first_num) + " // " + str(second_num) + " = "
-        user_answer = float(input(question))
     elif operation == "%":
         correct_answer = first_num % second_num
         question = str(first_num) + " % " + str(second_num) + " = "
-        user_answer = float(input(question))
+
+    get_answer = False
+    while not get_answer:
+        try:
+            user_answer = float(input(question))
+            get_answer = True
+        except ValueError:
+            print("You did not input a float number. Please try again.")
 
     if user_answer == correct_answer:
         return True
@@ -58,29 +69,31 @@ def math_questions():
 
 
 def string_questions():
+    """
+
+    :return:
+    """
     words = ["jargon", "gobbelygook", "fire", "is", "matador"]
     word_one = words[(random.randint(0, 4))]
     word_two = words[random.randint(0, 4)]
     word_format = random.randint(1, 4)
     correct_answer = None
-    user_answer = None
+    question = None
 
     if word_format == 1:
         correct_answer = word_one + " " + word_two
         question = "print('" + word_one + "', '" + word_two + "')\n"
-        user_answer = input(question)
     elif word_format == 2:
         correct_answer = word_one + word_two
         question = "print('" + word_one + "' + '" + word_two + "')\n"
-        user_answer = input(question)
     elif word_format == 3:
         correct_answer = word_one + word_two
         question = "print('" + word_one + "', '" + word_two + "', sep='')\n"
-        user_answer = input(question)
     elif word_format == 4:
         correct_answer = word_one + " " + word_two + "!"
         question = "print('" + word_one + "', '" + word_two + "', end='!')\n"
-        user_answer = input(question)
+
+    user_answer = input(question)
 
     if user_answer == correct_answer:
         return True
@@ -89,45 +102,49 @@ def string_questions():
 
 
 def relational_questions():
+    """
+
+    :return:
+    """
     operators = ["==", "!=", ">", "<", ">=", "<="]
     chosen_operator = operators[random.randint(0, 5)]
     first_num = random.randint(0, 20)
     second_num = random.randint(0, 20)
     correct_answer = None
-    user_answer = None
+    question = None
 
     if chosen_operator == "==":
         correct_answer = str(first_num == second_num)
         question = str(first_num) + " == " + str(second_num) + " "
-        user_answer = input(question)
     elif chosen_operator == "!=":
         correct_answer = str(first_num != second_num)
         question = str(first_num) + " != " + str(second_num) + " "
-        user_answer = input(question)
     elif chosen_operator == ">":
         correct_answer = str(first_num > second_num)
         question = str(first_num) + " > " + str(second_num) + " "
-        user_answer = input(question)
     elif chosen_operator == "<":
         correct_answer = str(first_num < second_num)
         question = str(first_num) + " < " + str(second_num) + " "
-        user_answer = input(question)
     elif chosen_operator == ">=":
         correct_answer = str(first_num >= second_num)
         question = str(first_num) + " >= " + str(second_num) + " "
-        user_answer = input(question)
     elif chosen_operator == "<=":
         correct_answer = str(first_num <= second_num)
         question = str(first_num) + " <= " + str(second_num) + " "
-        user_answer = input(question)
 
-    if user_answer == correct_answer:
+    user_answer = input(question)
+
+    if user_answer.lower() == correct_answer.lower():
         return True
     else:
         return False
 
 
 def boolean_questions():
+    """
+
+    :return:
+    """
     operators = ["and", "or", "not"]
     chosen_operator = operators[random.randint(0, 2)]
     first_num = random.randint(0, 20)
@@ -135,22 +152,21 @@ def boolean_questions():
     third_num = random.randint(0, 20)
     fourth_num = random.randint(0, 20)
     correct_answer = None
-    user_answer = None
+    question = None
 
     if chosen_operator == "and":
         correct_answer = str((first_num == second_num) and (third_num == fourth_num))
         question = str(first_num) + " == " + str(second_num) + " and " + str(third_num) + " == " + str(fourth_num) + " "
-        user_answer = input(question)
     elif chosen_operator == "or":
         correct_answer = str((first_num >= second_num) or (third_num <= fourth_num))
         question = str(first_num) + " >= " + str(second_num) + " or " + str(third_num) + " <= " + str(fourth_num) + " "
-        user_answer = input(question)
     elif chosen_operator == "not":
         correct_answer = str(not first_num > fourth_num)
         question = "not " + str(first_num) + " > " + str(fourth_num) + " "
-        user_answer = input(question)
 
-    if user_answer == correct_answer:
+    user_answer = input(question)
+
+    if user_answer.lower() == correct_answer.lower():
         return True
     else:
         return False
@@ -158,13 +174,17 @@ def boolean_questions():
 
 #Main Code
 def main():
+    """
 
+    """
     #Introduction to the quiz. Gets name for the farewell message later
     print("This is the Introduction to Computer Programming Quiz. You will be tested on the basic concepts learned.")
     name = input("Please tell us your name. ")
     print("You will be given 20 example programming commands, and must correctly identify what their outputs are.")
     print("Any answers for math problems that result in an answer that is not an integer should be rounded to the "
           "second decimal place.")
+    print("Relational and Boolean questions will have an answer of True or False. Print questions will have answer of "
+          "string.")
 
     try_again = True
 
@@ -204,5 +224,7 @@ def main():
 
     print("Have a ", "lovely " * 2,  "day " + name + ". :)", sep="")
 
+
 #runs Main Code
-main()
+if __name__ == "__main__":
+    main()
