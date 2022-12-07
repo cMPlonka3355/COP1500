@@ -1,19 +1,56 @@
-#Connor Plonka
-#The following is a quiz on some basic concepts and commands for Introduction to Computer Programming.
-#sources used:
-#https://www.geeksforgeeks.org/gfact-50-python-end-parameter-in-print/
+"""Integration Project for Introduction to Computer Science
+The following is code for a quiz, based on basic computer science principles such as math operators, string format,
+relational operators, and boolean operators. Users can take the quiz multiple times.
 
-import sys
+Input:
+    Name
+    Answers to Questions
+    Choice in Retaking Quiz
+Output:
+    Introductory Remarks and Needed Info
+    Quiz Questions
+    Message based on Grade
+    Question on Retaking Quiz
+Example:
+    This is the Introduction to Computer Programming Quiz. You will be tested on the basic concepts learned.
+    Please tell us your name. Connor
+    You will be given 20 example programming commands, and must correctly identify what their outputs are.
+    Any answers for math problems that result in an answer that is not an integer should be rounded to the
+    second decimal place.
+    Relational and Boolean questions will have an answer of True or False. Print questions will have answer of
+    string.
+    *20 RANDOM QUESTIONS*
+        Example Questions and Answers:
+            2 + 3 = 5
+
+            print('fire' + 'is')
+            fire is
+
+            0 < 3 True
+
+            4 == 4 and 5 == 9 False
+            
+    *GRADE MESSAGE*
+        Example Message if Grade is 20/20:
+            Yippee! Yippee! You got all the questions correct!
+
+    Would you like to try the quiz again? Y/n n
+    Have a lovely lovely day Connor. :)
+Sources:
+    https://www.geeksforgeeks.org/gfact-50-python-end-parameter-in-print/"""
+
+__author__ = 'Connor Plonka'
+
 import random
 
 
 def yes_or_no(choice):
     """
-
-    :param choice:
-    :return:
+    Returns True or False depending on input from user
+    :param choice: string value
+    :return: boolean
     """
-    if choice == "Y":
+    if choice.upper() == "Y":
         return True
     else:
         return False
@@ -21,8 +58,9 @@ def yes_or_no(choice):
 
 def math_questions():
     """
-
-    :return:
+    Gives the user a computer science based math question to solve, using python math operators
+    Compares user answer to computer-made correct answer
+    :return: boolean
     """
     operators = ["+", "-", "*", "/", "**", "//", "%"]
     operation = operators[random.randint(0, 6)]
@@ -70,8 +108,8 @@ def math_questions():
 
 def string_questions():
     """
-
-    :return:
+    Gives the user a computer science based string question to solve, using print statements formats
+    :return: boolean
     """
     words = ["jargon", "gobbelygook", "fire", "is", "matador"]
     word_one = words[(random.randint(0, 4))]
@@ -103,8 +141,8 @@ def string_questions():
 
 def relational_questions():
     """
-
-    :return:
+    Gives the user a computer science based question on relational operators, with answers being True or False
+    :return: boolean
     """
     operators = ["==", "!=", ">", "<", ">=", "<="]
     chosen_operator = operators[random.randint(0, 5)]
@@ -142,8 +180,8 @@ def relational_questions():
 
 def boolean_questions():
     """
-
-    :return:
+    Gives the user a computer science based question on boolean operators, answers being either True or False
+    :return: boolean
     """
     operators = ["and", "or", "not"]
     chosen_operator = operators[random.randint(0, 2)]
@@ -172,12 +210,13 @@ def boolean_questions():
         return False
 
 
-#Main Code
+#   Main Code
 def main():
     """
-
+    Main Code, getting name, printing introduction and rules of quiz, and doing random-generated questions
+    Depending on score, certain messages are given, with special text art created for a perfect score
     """
-    #Introduction to the quiz. Gets name for the farewell message later
+#   Introduction to the quiz. Gets name for the farewell message later
     print("This is the Introduction to Computer Programming Quiz. You will be tested on the basic concepts learned.")
     name = input("Please tell us your name. ")
     print("You will be given 20 example programming commands, and must correctly identify what their outputs are.")
@@ -210,7 +249,7 @@ def main():
                 if answered_correctly:
                     score += 1
 
-    #farewell message, as well as reminder for the user to tally their score for the quiz.
+#   farewell message, as well as reminder for the user to tally their score for the quiz.
         print("you have completed the quiz.")
         if score == 20:
             print("Yippee! " * 2, "You got all the questions correct", sep='', end="!\n")
@@ -225,6 +264,6 @@ def main():
     print("Have a ", "lovely " * 2,  "day " + name + ". :)", sep="")
 
 
-#runs Main Code
+#   runs Main Code
 if __name__ == "__main__":
     main()
